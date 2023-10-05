@@ -28,4 +28,14 @@ public class Constants {
     public static final String STATUS_ORDER_INCORRECT ="000000";
     public static final String YANDEX = "Яндекс";
 
+    public static final String ERROR_MESSAGE_FIELD_NAME ="Введите корректное имя";
+    public static final String ERROR_MESSAGE_FIELD_SURNAME ="Введите корректную фамилию";
+    public static final String ERROR_MESSAGE_FIELD_ADRESS ="Введите корректный адрес";
+    public static final String ERROR_MESSAGE_FIELD_METRO_STATION ="Выберите станцию";
+    public static final String ERROR_MESSAGE_FIELD_PHONE ="Введите корректный номер";
+
+
+
+
+
 }

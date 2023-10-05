@@ -2,9 +2,6 @@ package site.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Action;
-
-import java.security.Key;
 
 import static org.example.WebDrivers.driver;
 import static site.pages.Constants.COMMENT;
@@ -13,16 +10,21 @@ public class OrderFormPage {
 
     private By buttonNext = By.xpath("//button[contains(text(),'Далее')]");
     private By fieldName = By.xpath("//input[@placeholder='* Имя']");
-    private By fieldSurname = By.xpath("//input[@placeholder='* Фамилия']");
-    private By fieldAdress = By.xpath("//input[@placeholder='* Адрес: куда привезти заказ']");
+    public By fieldNameError = By.xpath("//div[contains(text(),'Введите корректное имя')]");
+    public By fieldSurnameError = By.xpath("//div[contains(text(),'Введите корректную фамилию')]");
+    public By fieldAdressError = By.xpath("//div[contains(text(),'Введите корректный адрес')]");
+    public By fieldMetroStationError = By.xpath("//div[contains(@class,'MetroError')]");
+    public By fieldPhoneError = By.xpath("//div[contains(text(),'Введите корректный номер')]");
+    public By fieldSurname = By.xpath("//input[@placeholder='* Фамилия']");
+    public By fieldAdress = By.xpath("//input[@placeholder='* Адрес: куда привезти заказ']");
     public By fieldMetroStation = By.xpath("//input[@placeholder='* Станция метро']");
     public By metroLihoboru = By.xpath("//button[@value='237']");
     public By metroCherkizovskaya = By.xpath("//button[@value='2']");
-    private By fieldPhoneNumber = By.xpath("//input[@placeholder='* Телефон: на него позвонит курьер']");
+    public By fieldPhoneNumber = By.xpath("//input[@placeholder='* Телефон: на него позвонит курьер']");
     public By fieldDateOrder = By.xpath("//div[@class='react-datepicker__input-container']/input");
-    private By fieldDateOrder2 = By.xpath("//div[@class='Order_Form__17u6u']");
-    private By dayStartOrderUser1 = By.xpath("//div[@aria-label='Choose воскресенье, 1-е октября 2023 г.']");
-    private By dayStartOrderUser2 = By.xpath("//div[@aria-label='Choose четверг, 5-е октября 2023 г.']");
+    public By HeaderOrder = By.xpath("//div[contains(@class,'Order_Header')]");
+    public By dayStartOrderUser1 = By.xpath("//div[@aria-label='Choose воскресенье, 1-е октября 2023 г.']");
+
 
     private By fieldRentalPeriod = By.xpath("//span[@class='Dropdown-arrow']");
     private By daysRentalPeriod1 = By.xpath("//div[@class='Dropdown-menu']/div[1]");
@@ -47,7 +49,7 @@ public class OrderFormPage {
         String textOrderLocator;
         HomePage homePage = new HomePage();
         driver.findElement(homePage.buttonOrderHead).click();
-        textOrderLocator = (driver.findElement(fieldDateOrder2).getText());
+        textOrderLocator = (driver.findElement(HeaderOrder).getText());
         return textOrderLocator;
     }
 
@@ -55,7 +57,7 @@ public class OrderFormPage {
         HomePage homePage = new HomePage();
         String textOrderLocator;
         homePage.clickButtonOrderFoot();
-        textOrderLocator = (driver.findElement(fieldDateOrder2).getText());
+        textOrderLocator = (driver.findElement(HeaderOrder).getText());
         return textOrderLocator;
     }
 
@@ -164,5 +166,39 @@ public class OrderFormPage {
         return orderText;
     }
 
+    public void findErrorMessageName() {
+        HomePage homePage = new HomePage();
+        homePage.clickButtonOrderHead();
+        clickButtonNext();
+        driver.findElement(fieldNameError);
+    }
 
+    public void findErrorMessageSurname() {
+        HomePage homePage = new HomePage();
+        homePage.clickButtonOrderHead();
+        clickButtonNext();
+        driver.findElement(fieldSurnameError);
+    }
+
+    public void findErrorMessageAdress() {
+        HomePage homePage = new HomePage();
+        homePage.clickButtonOrderHead();
+        clickButtonNext();
+        driver.findElement(fieldAdress).sendKeys("1");
+        driver.findElement(fieldAdressError);
+    }
+
+    public void findErrorMessageMetroStation() {
+        HomePage homePage = new HomePage();
+        homePage.clickButtonOrderHead();
+        clickButtonNext();
+        driver.findElement(fieldMetroStationError);
+    }
+
+    public void findErrorMessagePhone() {
+        HomePage homePage = new HomePage();
+        homePage.clickButtonOrderHead();
+        clickButtonNext();
+        driver.findElement(fieldPhoneError);
+    }
 }
